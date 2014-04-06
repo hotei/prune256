@@ -70,6 +70,9 @@ filesystem (ZFS etc) that allows snapshots and restores.
 * The program uses concurrent searches on multi-core systems.  This helps most
 when there are more than RE2s than there are cores. 
 * Go implements a very fast [regular expression matcher][2] with [syntax described here][5]
+* Deletes can be rate-limited from 0 to 10 seconds in 100 ms increments
+ * This avoids saturating IO subsystems.
+ * Deletes of large files can take a while to release the resources - especially in the case of ZFS RAID systems.
 
 ### Limitations
 
